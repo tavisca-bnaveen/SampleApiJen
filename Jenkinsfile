@@ -7,6 +7,7 @@ pipeline {
         password(name:"PASSWORD",defaultValue:"8463971887")
         string(name:"DOCKERREPONAME",defaultValue:"sampleapi")
         string(name:"TAGNAME",defaultValue:"api")
+        string(name:"PORT",defaultValue:"9000")
     }
     stages {
         stage('Build') {
@@ -39,6 +40,7 @@ pipeline {
                 powershell(script:'docker login -u ${env:USERNAME} -p ${env:PASSWORD}')
                 powershell(script:'docker tag ${env:IMAGENAME}:latest ${env:USERNAME}/${env:DOCKERREPONAME}:${env:TAGNAME}')
                 powershell(script:'docker push ${env:USERNAME}/${env:DOCKERREPONAME}:${env:TAGNAME}')
+                powershell(script:'docker run -p ${env:PORT}:80 naveenbora143/sampleapi:api')
             }
         }
         
