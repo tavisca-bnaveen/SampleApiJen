@@ -7,7 +7,6 @@ pipeline {
         password(name:"PASSWORD",defaultValue:"8463971887")
         string(name:"DOCKERREPONAME",defaultValue:"sampleapi")
         string(name:"TAGNAME",defaultValue:"api")
-        
     }
     stages {
         stage('Build') {
